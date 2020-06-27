@@ -18,7 +18,10 @@ express()
     .use(express.urlencoded({extended: false}))
 
     // endpoints
-    .post('/clients', (req,res) => {
+    .get('/clients', (req,res) => {
+        res.json(clients);
+    })
+    .post('/client', (req,res) => {
         console.log(req.body.name);
         
         const client = clients.find( client => client.name.includes(req.body.name));
