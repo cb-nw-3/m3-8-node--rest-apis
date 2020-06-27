@@ -5,6 +5,10 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 
 const { clients } = require("./data/clients");
+const { wordObjectsArray } = require("./data/wordBank");
+const { masterKey } = require("./masterKey");
+
+// console.log(wordObjectsArray[42]);
 
 const handleUserRequest = (req, res) => {
   console.log("req.body: ", req.body);
@@ -37,5 +41,52 @@ express()
 
   // endpoints
   .post("/getUser", handleUserRequest)
+
+  .get("/hangman/words/", (req, res) => {
+    let randomIndex = Math.floor(
+      Math.random() * Math.floor(wordObjectsArray.length)
+    );
+    let word = wordObjectsArray[randomIndex];
+
+    res.status(200).send({ id: word.id, length: word.length });
+  })
+
+  .get("/hangman/words/:wordId/:key", (req, res) => {
+    let key = req.params.key;
+
+    let randomIndex = Math.floor(
+      Math.random() * Math.floor(wordObjectsArray.length)
+    );
+    let word = wordObjectsArray[randomIndex];
+    if (key === masterKey) {
+      res.status(200).send({ word });
+    } else {
+      res.status(400).send({ error: "not authorised" });
+    }
+    res.status(200).send({ id: word.id, length: word.length });
+  })
+
+  .get("/hangman/guess/:wordID/:letter", (req, res) => {
+    let wordId = req.params.wordID;
+    let letter = req.params.letter;
+
+    //console.log(wordId, letter);
+
+    //let secretWord = wordObjectsArray[wordId];
+    let secretWord = wordObjectsArray.find(
+      (item) => item.id === Number(wordId)
+    );
+    //console.log(secretWord.word);
+
+    let wordArray = secretWord.word.split("");
+    let response = wordArray.map((item) => {
+      return item === letter;
+    });
+    if (secretWord.word.includes(letter)) {
+      res.status(200).send({ status: "included", response: response });
+    } else {
+      res.status(200).send({ status: "not included", response: response });
+    }
+  })
 
   .listen(PORT, () => console.log(`Listening on port ${PORT}`));
