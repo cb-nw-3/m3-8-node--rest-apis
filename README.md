@@ -16,6 +16,25 @@ He wants to track _everything_ from the stock, the customers, the seating in the
 
 Provide him with a series of REST endpoints that meet all, or most of the RESTful principles that you've just heard about! Your feedback will dictate how the database will eventually be built... no pressure.
 
+REST ENDPOINTS -- EXERCISE ANSWERS (I guess we do that here?)
+
+`GET /customers/` - Retrieves a list of all customers in the café
+`POST /customers/` - Adds a customer to the list the first time
+`GET /customer/id` - Retrieves info about a customer in the café
+`PATCH /customer/id` - Changes the state of a customer (in our out)
+`DELETE /customers/id` - Removes a customer from the db when they request it
+
+`GET /stock/` - Retrieves a list of the whole inventory
+`GET /stock/beans` - Retrieves a list of all beans and their inventory
+`POST /stock/beans` - Adds a new type of beans to the list
+`PUT /stock/beans/id` - Updates the inventory of a bean when they are sold or restocked
+`DELETE /stock/beans/id` - Removes the bean from the list when it becomes unavailable forever
+
+`GET /seating/` - Retrieves a list of every seat in the café
+`GET /seating/id` - Retrieves a status of a certain seat in the café
+`PUT /seating/id` - Changes the state of a seat (free or occupied)
+`DELETE /seating/id` - Removes a seat from the list when the café is remodeled
+
 _This activity is more about the discussion in how to best organize data endpoints. There will not be any coding, unless you really want to provide Greg with working endpoints that he can test in Insomnia._
 
 ---
@@ -43,14 +62,12 @@ You will divide your concerns in two: the frontend, and the backend. Start with 
 #### Backend
 
 - Create a data file with an array of 10 to 20 words objects. don't forget to `export` the array.
-    - e.g. `{ word: 'bacon', id: '123', letterCount: '5' }`
+  - e.g. `{ word: 'bacon', id: '123', letterCount: '5' }`
 - Create a RESTful API that contains these endpoints.
-    `GET /hangman/words` This will return an object that contains
-        - the `id` of a random word selected from an array of words
-        - the `letterCount` of the word.
-    - `GET /hangman/guess/:wordId/:letter` This will return
-        - the appropriate status code
-        - If the letter guessed is in the word, return an array of booleans that map the letter's position in the word. This will be processed by the FE.
+  `GET /hangman/words` This will return an object that contains - the `id` of a random word selected from an array of words - the `letterCount` of the word.
+  - `GET /hangman/guess/:wordId/:letter` This will return
+    - the appropriate status code
+    - If the letter guessed is in the word, return an array of booleans that map the letter's position in the word. This will be processed by the FE.
 - Once you have completed these steps, you should be able to _play_ the game via the Insomnia app to test your code.
 - Grab pen and paper and test it out!
 
@@ -68,8 +85,8 @@ Create some sort of authentication that will not allow this to be accessed by an
 - User input is entirely up to you. It could be a set of 26 buttons, or yuo could listen for `keyDown` events.
 - No need to render a hanging man...
 - **The FE application will _NEVER_ know the word that the user is trying to guess.**
-    - You will ask the server for a word.
-    - It will provide a word object that includes an `id` and a `letterCount` that you will store to render the game.
+  - You will ask the server for a word.
+  - It will provide a word object that includes an `id` and a `letterCount` that you will store to render the game.
 - When the user guesses a letter, you will query the server with the `letter` and the `word.id`. The server will respond with the appropriate an array if indices as to where that letter is positioned in the word and a status code.
 - Feel free to create some `sass` to style the hangman page.
 
@@ -99,20 +116,20 @@ Fun times!
 
 1. Fork it from the GitHub repo page. (this will give you a copy of it in your account.)
 2. Clone it to your computer using the `https` address.
-    - On your computer, navigate to the folder where you have been saving your workshops. To through folders in the terminal, use
-        - MAC: `ls` to view enclosed files/folders
-        - WIN: `dir` to view enclosed files/folders
-        - `cd <FOLDERNAME>` to move into a folder.
-        - Use `cd ..` to go up one level (parent folder)
-    - `git clone <URL>`
-    - `cd` into the repo folder.
-    - `code .`
-    - Create a new branch to work from: `git checkout -b my-solutions`
-    - Get to work!
-    - Once you are done, stage the files with `git add .`
-    - Commit them to the branch with `git commit -m 'I did it!`
-    - Push it to GitHub `git push origin HEAD`
-    - In the GitHub UI, open a PR
-    - Done!!
+   - On your computer, navigate to the folder where you have been saving your workshops. To through folders in the terminal, use
+     - MAC: `ls` to view enclosed files/folders
+     - WIN: `dir` to view enclosed files/folders
+     - `cd <FOLDERNAME>` to move into a folder.
+     - Use `cd ..` to go up one level (parent folder)
+   - `git clone <URL>`
+   - `cd` into the repo folder.
+   - `code .`
+   - Create a new branch to work from: `git checkout -b my-solutions`
+   - Get to work!
+   - Once you are done, stage the files with `git add .`
+   - Commit them to the branch with `git commit -m 'I did it!`
+   - Push it to GitHub `git push origin HEAD`
+   - In the GitHub UI, open a PR
+   - Done!!
 
 ---
