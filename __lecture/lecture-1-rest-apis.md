@@ -1,4 +1,3 @@
-# 3.8.1 - REST APIs
 
 ---
 
@@ -20,6 +19,7 @@ Something that allows one piece of software to talk to another.
 - All REST services are APIs, but not all APIs are REST.
 - REST is a set of rules/standards/guidelines for how to build a web API.
 
+
 ---
 
 ## Fine. But what is it, really?
@@ -34,8 +34,8 @@ It's essentially a set of RESTful principles.
 ### REST is a client-server architecture.
 
 - The client and the server both have different concerns. 
-    - The server stores and/or manipulates information and makes it available to the user in an efficient manner.
-    - The client takes that information and displays it to the user and/or uses it to perform subsequent requests for information.
+    - The server stores and/or manipulates information.
+    - The client(browser) takes that information and displays it to the user and/or uses it to perform subsequent requests for information.
     
 _This separation of concerns allows both the client and the server to evolve independently as it only requires that the interface stays the same._
 
@@ -43,39 +43,24 @@ _This separation of concerns allows both the client and the server to evolve ind
 
 ### REST is stateless.
 
-- That means the communication between the client and the server always contains **all** the information needed to perform the request.
-- There is no session state in the server, it is kept entirely on the client's side.
+- Facespace and Order form had a state: if you restart the server you loose your changes
+- There is no session state in the server, it is kept entirely on the client's side(browser).
 - If access to a resource requires authentication, then the client needs to authenticate itself with every request.
 
 ---
 
-### REST is cacheable.
-
-- The client, the server and any intermediary components can all cache resources in order to improve performance.
-
----
-
-### REST provides a uniform interface between components.
+### REST provides a uniform way to interact with your data
 
 - This simplifies the architecture, as all components follow the same rules to speak to one another.
 - It also makes it easier to understand the interactions between the different components of the system.
 
 ---
+### Rest organises actions in CRUD
 
-### REST is a layered system.
-
-- Individual components cannot see beyond the immediate layer with which they are interacting.
-- This allows components to be independent and thus easily replaceable or extendable.
-
----
-
-### More Opinions
-
-- It should use web standards where they make sense
-- It should be friendly to the developer and be explorable via a browser address bar
-- It should be simple, intuitive and consistent to make adoption not only easy but pleasant
-- It should provide enough flexibility to power majority of the Enchant UI
-- It should be efficient, while maintaining balance with the other requirements
+- C: Create new data, such as registering a new user
+- R: Read information on existing data
+- U: Update information or a part of it
+- D: Delete information that is no longer needed
 
 ---
 
@@ -92,30 +77,19 @@ _This separation of concerns allows both the client and the server to evolve ind
 | `PATCH`  | applies a _partial_ update to a resource |
 | `DELETE` | deletes a resource |
 
-_Basically, follow `CRUD` (Create, Read, Update, Delete)_
+_Matches `CRUD` (Create, Read, Update, Delete)_
 
 ---
 
-### Example
+### Example E commerce
 
-- `GET    /tickets`     - Retrieves a list of tickets
-- `GET    /tickets/12`  - Retrieves a specific ticket
-- `POST   /tickets`     - Creates a new ticket
-- `PUT    /tickets/12`  - Updates ticket #12
-- `PATCH  /tickets/12`  - Partially updates ticket #12
-- `DELETE /tickets/12`  - Deletes ticket #12
+- `GET    /products`     - Retrieves a list of product
+- `GET    /product/12`  - Retrieves a specific product
+- `POST   /products`     - Creates a new product
+- `PUT    /product/12`  - Updates product #12
+- `PATCH  /products/12`  - Partially updates product #12
+- `DELETE /products/12`  - Deletes product #12
 
----
-
-### What About Related Data?
-
-If a resources can only exist _within_ a resource, it should be part of the endpoint.
-
-<a href='https://www.instagram.com/developer/endpoints/users/#get_users_self' target='_blank'>Instagram Endpoints</a>
-
----
-
-<img src='./assets/github-endpoints.png' />
 
 ---
 
@@ -130,4 +104,11 @@ If a resources can only exist _within_ a resource, it should be part of the endp
 - `500` INTERNAL SERVER ERROR — Should never be thrown explicitly but might occur if the system fails.
 - `502` BAD GATEWAY — When the server received an invalid response from the upstream server.
 
+---
+Recap:
+
+- rest is stateless
+- rest must implement CRUD actions (create, read, update, delete) => post put patch delete
+- rest must return well defined status codes (404, 200 etc)
+- rest is usefull in client / server scenarios (ex: online store)
 ---
