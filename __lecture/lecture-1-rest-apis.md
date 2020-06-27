@@ -9,7 +9,7 @@ _or **RE**presentational **S**tate **T**ransfer._
 
 ## API
 
-_or **A**plication **P**rogramming **I**nterface_
+_or **A**pplication **P**rogramming **I**nterface_
 
 Something that allows one piece of software to talk to another.
 
