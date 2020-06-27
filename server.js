@@ -48,27 +48,30 @@ express()
     );
     let word = wordObjectsArray[randomIndex];
 
-    res.status(200).send({ id: word.id, length: word.length });
+    res.status(200).send({ id: word.id, letterCount: word.letterCount });
   })
 
   .get("/hangman/words/:wordId/:key", (req, res) => {
     let key = req.params.key;
+    let wordId = req.params.wordId;
 
-    let randomIndex = Math.floor(
-      Math.random() * Math.floor(wordObjectsArray.length)
-    );
-    let word = wordObjectsArray[randomIndex];
+    let word = wordObjectsArray[wordId];
     if (key === masterKey) {
       res.status(200).send({ word });
     } else {
       res.status(400).send({ error: "not authorised" });
     }
-    res.status(200).send({ id: word.id, length: word.length });
   })
 
   .get("/hangman/guess/:wordID/:letter", (req, res) => {
     let wordId = req.params.wordID;
     let letter = req.params.letter;
+
+    if (letter.length !== 1) {
+      res
+        .status(400)
+        .send({ status: "error", error: "you didn't input a letter" });
+    }
 
     //console.log(wordId, letter);
 
@@ -79,13 +82,18 @@ express()
     //console.log(secretWord.word);
 
     let wordArray = secretWord.word.split("");
-    let response = wordArray.map((item) => {
+    let letterPosition = wordArray.map((item) => {
       return item === letter;
     });
+    console.log(letter);
     if (secretWord.word.includes(letter)) {
-      res.status(200).send({ status: "included", response: response });
+      res
+        .status(200)
+        .send({ status: "included", letterPosition: letterPosition });
     } else {
-      res.status(200).send({ status: "not included", response: response });
+      res
+        .status(200)
+        .send({ status: "not included", letterPosition: letterPosition });
     }
   })
 
