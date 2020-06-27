@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const PORT = process.env.PORT || 8000;
 
 const { clients } = require("./data/clients");
+const { words } = require("./data/hang");
 
 express()
   .use(function (req, res, next) {
@@ -42,6 +43,58 @@ express()
 
     //test with
     //http://localhost:8000/clients/59761c23b30d971669fb42ff
+  })
+
+  //######################## EXERCISE 3 ##########################
+
+  //this returns a random word to start guessing
+  .get("/hangman/words", (req, res) => {
+    //get an random object from the data array
+    let randomWord = words[Math.floor(Math.random() * words.length)];
+
+    //only return the id and length of the word
+    let data = { id: randomWord.id, length: randomWord.length };
+    //console.log(data);
+
+    //return to client
+    res.status(200).send(data);
+  })
+
+  .get("/hangman/guess/:wordId/:letter", (req, res) => {
+    let wordId = req.params.wordId;
+    let letter = req.params.letter;
+
+    let result = words.find((word) => word.id === wordId);
+    //console.log(result);
+
+    if (result != undefined) {
+      if (result.word.includes(letter)) {
+        res.status(200).send({
+          status: "sucess",
+          message: `the letter ${letter} is included`,
+          letter: `${letter}`,
+          position: `${result.word.indexOf(letter)}`,
+        });
+      } else {
+        res.status(200).send({
+          status: "fail",
+          message: `the letter ${letter} is NOT included`,
+          letter: `${letter}`,
+          position: "none",
+        });
+      }
+    } else {
+      res
+        .status(400)
+        .send({ message: "id does not match any word in the game" });
+    }
+  })
+
+  //FOR TESTING ONLY returns the word by ID
+  .get("/hangman/words/:id", (req, res) => {
+    let id = req.params.id;
+    let data = words.find((word) => word.id === id);
+    res.status(200).send(data);
   })
 
   .get("*", (req, res) => {
