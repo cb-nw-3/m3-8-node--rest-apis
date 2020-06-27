@@ -40,8 +40,8 @@ _This activity is more about the discussion in how to best organize data endpoin
 -201 : to see if your POST requests worked
 -202: to see if any changes with PUT/DELETE have been accepted
 -400: to see if what was requested had a mistake or did not follow the database info
--401: to see if what you are asking is going against your database 
--403: to see if you tried accessing something that should not be accessible
+-401: to see if what you are allowed to do depending on your authentication
+-403: to see if you tried accessing something that should not be accessible depending on your permissions
 -404: to see if you're using the wrong URL or if you made an error when using GET, POST, PUT and DELETE
 ---
 

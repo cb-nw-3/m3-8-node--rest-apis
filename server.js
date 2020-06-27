@@ -1,5 +1,5 @@
 'use strict';
-
+const { clients } = require('./data/clients');
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
@@ -18,5 +18,13 @@ express()
     .use(express.urlencoded({extended: false}))
 
     // endpoints
-
+    .post('/clients', (req,res) => {
+        console.log(req.body.name);
+        
+        const client = clients.find( client => client.name.includes(req.body.name));
+        console.log(client);
+        res.json(client);
+    })
+    //Example to use CURL + using POST : 
+    //curl -d "{\"name\":\"Dunlap\"}" -H "Content-Type: application/json" http:/localhost:8000/clients/
     .listen(PORT, () => console.log(`Listening on port ${PORT}`));
