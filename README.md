@@ -17,7 +17,32 @@ He wants to track _everything_ from the stock, the customers, the seating in the
 Provide him with a series of REST endpoints that meet all, or most of the RESTful principles that you've just heard about! Your feedback will dictate how the database will eventually be built... no pressure.
 
 _This activity is more about the discussion in how to best organize data endpoints. There will not be any coding, unless you really want to provide Greg with working endpoints that he can test in Insomnia._
+//////////////////////////////////////////////
 
+1-First, have a database where you can have all the information saved and make changes that will reflect the actual situation of the cafe;
+
+2-The following would be endpoints for what there is to be done in the cafe:
+-GET /stock
+-GET /customers
+-GET /seats
+-POST /stock/:id
+-POST /customers/:id
+-POST /seats/:id
+-PUT /customers/:id
+-PUT /seats/:id
+-PUT /stock/:id
+-DELETE /stock/:id
+-DELETE /customers/:id
+-DELETE /seats/:id
+
+3- The following status codes are to be used:
+-200 : when the requests are working properly
+-201 : to see if your POST requests worked
+-202: to see if any changes with PUT/DELETE have been accepted
+-400: to see if what was requested had a mistake or did not follow the database info
+-401: to see if what you are asking is going against your database 
+-403: to see if you tried accessing something that should not be accessible
+-404: to see if you're using the wrong URL or if you made an error when using GET, POST, PUT and DELETE
 ---
 
 ## Exercise 2 (Optional)
