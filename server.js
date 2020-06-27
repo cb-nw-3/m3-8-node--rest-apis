@@ -68,18 +68,12 @@ express()
     let letter = req.params.letter;
 
     if (letter.length !== 1) {
-      res
-        .status(400)
-        .send({ status: "error", error: "you didn't input a letter" });
+      res.status(400).send({ status: "error", error: "bad input" });
     }
 
-    //console.log(wordId, letter);
-
-    //let secretWord = wordObjectsArray[wordId];
     let secretWord = wordObjectsArray.find(
       (item) => item.id === Number(wordId)
     );
-    //console.log(secretWord.word);
 
     let wordArray = secretWord.word.split("");
     let letterPosition = wordArray.map((item) => {

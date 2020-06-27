@@ -36,11 +36,12 @@ function handleSubmit(event) {
         return;
       }
       let letterPositionArray = res.letterPosition;
-      for (let i = 0; i < wordLength; i++) {
-        if (letterPositionArray[i]) {
-          partialWord.splice(i, 1, playerInput);
+
+      letterPositionArray.forEach((item, index) => {
+        if (item) {
+          partialWord.splice(index, 1, playerInput);
         }
-        partialWordElement.innerText = partialWord.join(" ");
-      }
+      });
+      partialWordElement.innerText = partialWord.join(" ");
     });
 }
