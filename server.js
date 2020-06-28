@@ -38,15 +38,18 @@ const isLetterInWord = (req, res) => {
   wordArray.forEach((letter) => {
     booleanArray.push(false);
   });
+  if (letter.length > 1) {
+    res.json({ status: "too-long" });
+  }
   if (wordArray.includes(letter)) {
     wordArray.forEach((item, index) => {
       if (item === letter) {
         booleanArray[index] = true;
       }
     });
-    res.json({ array: booleanArray });
+    res.json({ status: "good-guess", array: booleanArray, letter: letter });
   } else {
-    res.send("letter is not in word");
+    res.json({ status: "not-in-word", letter: letter });
   }
 };
 express()

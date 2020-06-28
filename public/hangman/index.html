@@ -9,10 +9,15 @@
       time to get to hanging.... I mean guessing...
     </div>
     <form onsubmit="submitLetter(event)">
-      <input type="text" name="submittedLetter" />
+      <input id="letterInput" type="text" name="submittedLetter" />
       <button type="submit">Submit Letter</button>
     </form>
     <div class="letters"></div>
+    <div class="message"></div>
+    <div>
+      <h3>Rejected Letters</h3>
+      <div class="badLetter"></div>
+    </div>
     <script src="scripts.js"></script>
   </body>
 </html>
