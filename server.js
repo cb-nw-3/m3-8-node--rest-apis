@@ -34,7 +34,7 @@ express()
 
     //Hangman endpoints
     .get('/hangman/words', (req,res) => {
-            const ind = Math.floor(Math.random() * 10);
+            const ind = Math.floor(Math.random() * wordBank.length);
             const randomWord = {
                 //word: wordBank[ind].word,
                 id: wordBank[ind].id,
