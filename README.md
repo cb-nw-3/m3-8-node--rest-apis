@@ -19,6 +19,48 @@ Provide him with a series of REST endpoints that meet all, or most of the RESTfu
 _This activity is more about the discussion in how to best organize data endpoints. There will not be any coding, unless you really want to provide Greg with working endpoints that he can test in Insomnia._
 
 ---
+***My Answer
+- rest is stateless it means that the client is responsible for storing and handling all application state related information on client side and send any state information to the server whenever it is needed.
+
+- Greg can use an API like Square Developer(https://developer.squareup.com/docs/catalog-api/what-it-does) to manage his stock.
+Square Developer's json example:
+{
+  "type": "ITEM",
+  "id": "111",
+
+  "item_data": {
+    "name": "Coffee",
+    "description": "Hot bean juice",
+    "variations": [
+      {
+        "type": "ITEM_VARIATION",
+        "id": "222",
+        "item_variation_data": {
+          "item_id": "111",
+          "name": "Small",
+          ...
+        }
+      },
+      {
+        "type": "ITEM_VARIATION",
+        "id": "333",
+        "item_variation_data": {
+          "item_id": "111",
+          "name": "Large",
+          ...
+        }
+      }
+    ]
+  }
+}
+
+- Endpoints -> products/product can be changed to customers/customer in the examples below:
+GET gregscafe.com/products - Retrieves a list of product
+GET gregscafe.com/product/[ID] - Retrieves a specific product with its ID
+POST gregscafe.com/products - Creates a new product, it will be added on the products list
+PUT gregscafe.com/product/[ID] - Updates a specific product
+PATCH gregscafe.com/products/[ID] - Partially updates a specific product
+DELETE gregscafe.com/products/[ID] - Delete a specific product
 
 ## Exercise 2 (Optional)
 
