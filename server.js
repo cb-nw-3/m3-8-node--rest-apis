@@ -43,6 +43,29 @@ express()
             res.json(randomWord);
     })
     .get('/hangman/guess/:wordId/:letter', (req,res) => {
+        let answerArray = [];
+        let wordId = req.params.wordId;
+        let letter = req.params.letter;
+        let index = wordId -1
+        console.log(wordBank[index]);
+        console.log(wordId);
+        if (wordId == wordBank[index].id) {
+            console.log('good id');
+            let chosenWord = wordBank[index].word;
+            let wordArr = chosenWord.split('');
+            answerArray.push(wordArr);
+            console.log(answerArray);
+            if (letter == wordArr.find( letra => letra == letter)) {
+                console.log('good letter');
+                res.status(200).json({
+                    message: 'Match',
+                })
+                
+                
+            } else { res.status(200).json({
+                message: 'No match!',
+            })}
+        } else { console.log('no good')}
         
     })
     .listen(PORT, () => console.log(`Listening on port ${PORT}`));
