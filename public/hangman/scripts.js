@@ -20,12 +20,13 @@ const getWordAndLetterCount = async () => {
     lettersDiv.appendChild(newDiv);
   }
   let wordId = parsedResponse.wordId;
+  console.log("first", wordId);
   return wordId;
 };
-getWordAndLetterCount();
+let getInfo = getWordAndLetterCount();
 
 const submitLetter = async (event) => {
   event.preventDefault();
-  let wordId = await getWordAndLetterCount();
+  let wordId = await getInfo;
   console.log("wordId", wordId);
 };
