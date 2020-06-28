@@ -3,6 +3,7 @@ const { clients } = require('./data/clients');
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const { wordBank } = require('./public/hangman/data');
 
 const PORT = process.env.PORT || 8000;
 
@@ -30,4 +31,18 @@ express()
     })
     //Example to use CURL + using POST : 
     //curl -d "{\"name\":\"Dunlap\"}" -H "Content-Type: application/json" http:/localhost:8000/clients/
+
+    //Hangman endpoints
+    .get('/hangman/words', (req,res) => {
+            const ind = Math.floor(Math.random() * 10);
+            const randomWord = {
+                //word: wordBank[ind].word,
+                id: wordBank[ind].id,
+                letterCount: wordBank[ind].letterCount,
+            };
+            res.json(randomWord);
+    })
+    .get('/hangman/guess/:wordId/:letter', (req,res) => {
+        
+    })
     .listen(PORT, () => console.log(`Listening on port ${PORT}`));
