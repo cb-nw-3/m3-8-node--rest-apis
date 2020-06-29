@@ -58,3 +58,14 @@ const clients = [
 ]
 
 module.exports= { clients }
+
+
+app.get('/:query', (req,res) =>{
+    let result = [];
+let query = req.params.query;
+clients.forEach(client =>{
+    { query } = client;
+    result.push(query)
+})
+res.render('html-page', {result})
+})
