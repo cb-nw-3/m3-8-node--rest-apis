@@ -1,11 +1,13 @@
-let playerInputElement = document.querySelector(".playerInput");
-let partialWordElement = document.querySelector(".partialWord");
+const playerInputElement = document.querySelector(".playerInput");
+const partialWordElement = document.querySelector(".partialWord");
+const playerGuessesElement = document.querySelector(".playerGuesses");
 
 //get a word id
 let wordId = "";
 let wordLength = 0;
 let playerInput = "";
 let partialWord = [];
+let playerGuesses = [];
 
 fetch("/hangman/words", {
   method: "GET",
@@ -24,6 +26,7 @@ fetch("/hangman/words", {
 function handleSubmit(event) {
   event.preventDefault();
   playerInput = playerInputElement.value;
+  playerInputElement.value = "";
 
   fetch(`/hangman/guess/${wordId}/${playerInput}`, {
     method: "GET",
@@ -37,8 +40,13 @@ function handleSubmit(event) {
       }
       let letterPositionArray = res.letterPosition;
 
-      letterPositionArray.forEach((item, index) => {
-        if (item) {
+      playerGuesses.push(playerInput);
+      playerGuessesElement.innerText = `Letters guessed: [${playerGuesses.join(
+        " "
+      )}]`;
+
+      letterPositionArray.forEach((bool, index) => {
+        if (bool) {
           partialWord.splice(index, 1, playerInput);
         }
       });

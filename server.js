@@ -79,7 +79,7 @@ express()
     let letterPosition = wordArray.map((item) => {
       return item === letter;
     });
-    console.log(letter);
+    //console.log(letter);
     if (secretWord.word.includes(letter)) {
       res
         .status(200)
