@@ -1,7 +1,6 @@
 const { clients } = require('./data/clients.js');
 
 const handlerClientsData = (req, res) => {
-  console.log('query', req.params[0], Object.keys(req.query).length);
   if (
     (req.params[0] == '' || req.params[0] == '/') &&
     Object.keys(req.query).length === 0
@@ -12,18 +11,25 @@ const handlerClientsData = (req, res) => {
     const QUERY_KEY = QUERY[1];
     const KEYS = Object.keys(clients[0]);
     if (KEYS.includes(QUERY_KEY)) {
-      res.status(200).send(query(QUERY_KEY));
+      if (req.query.key != undefined) {
+        res.status(200).send(query(QUERY_KEY));
+      } else {
+        console.log(req.query);
+        res
+          .status(200)
+          .send(clients.filter((elem) => (elem[QUERY_KEY] = req.query.key)));
+      }
     }
   }
 };
 
 function query(key) {
-  return clients.map((element) => {
-    response = { name: element.name, key: element[key] };
+  return clients.map(function (elem) {
+    ob = {};
+    ob.name = elem.name;
+    ob[key] = elem[key];
+    return ob;
   });
-  let two = clients.map(
-    (inventor) => (ob = { name: inventor.name, age: inventor.age })
-  );
 }
 
 module.exports = {
