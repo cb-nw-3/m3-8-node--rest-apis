@@ -14,12 +14,44 @@ const { wordData } = require('./data/data.js');
 
 // handlers
 
-const someHandler = () => {
-    console.log("what");
+// this handler is supposed to return an object containing
+// the id of a random word found in the wordData array, as
+// well as its length.
+
+const wordPicker = (req, res) => {
+    let rando = Math.floor(Math.random() * wordData.length + 1);
+    let returnObj = {
+        "id": wordData[rando]["id"],
+        "length": wordData[rando]["letterCount"]
+    }
+    res.send(returnObj);
 }
 
-const otherHandler = () => {
-    console.log("bruh");
+// ok. this needs to return a couple of things. First, a status code.
+// One presumes that if the word does not contain the letter, it should be a 404.
+// but if it is in the word, we need to return an array of booleans
+// corresponding to the letter provided. That's gonna be interesting.
+
+const wordGuesser = (req, res) => {
+    let wordId = Number(req.params.wordId);
+    let letter = req.params.letter;
+
+    let relevantWord = (wordData.find(item => item.id === wordId)).word;
+
+    let boolArray = [];
+
+    // there's got to be a more elegant way to write this.
+
+    relevantWord.split('').forEach(item => {
+        if (item === letter) {
+            boolArray.push(true);
+        } else {
+            boolArray.push(false);
+        }
+    });
+
+    console.log(boolArray);
+
 }
 
 express()
@@ -35,7 +67,7 @@ express()
 
     // endpoints
 
-    .get('/hangman/words', someHandler)
-    .get('/hangman/guess/:wordId/:letter', otherHandler)
+    .get('/hangman/words', wordPicker)
+    .get('/hangman/guess/:wordId/:letter', wordGuesser)
 
     .listen(PORT, () => console.log(`Listening on port ${PORT}`));
