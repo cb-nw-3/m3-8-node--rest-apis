@@ -12,19 +12,20 @@ const handlerClientsData = (req, res) => {
     const KEYS = Object.keys(clients[0]);
     if (KEYS.includes(QUERY_KEY)) {
       if (req.query.key != undefined) {
-        res.status(200).send(query(QUERY_KEY));
+        console.log('here I am', req.query.key);
+        filteredClients = clients.filter(
+          (elem) => elem[QUERY_KEY] === req.query.key
+        );
+        res.status(200).send(query(QUERY_KEY, filteredClients));
       } else {
-        console.log(req.query);
-        res
-          .status(200)
-          .send(clients.filter((elem) => (elem[QUERY_KEY] = req.query.key)));
+        res.status(200).send(query(QUERY_KEY, clients));
       }
     }
   }
 };
 
-function query(key) {
-  return clients.map(function (elem) {
+function query(key, array) {
+  return array.map(function (elem) {
     ob = {};
     ob.name = elem.name;
     ob[key] = elem[key];
