@@ -1,7 +1,3 @@
-// const words = [
-//     "test",
-//     "testing"
-// ]
 
 let maxWrong = 5;
 let mistakes = 0;
@@ -34,13 +30,11 @@ async function getAnswer() {
 //Display each letter
 getWord()
     .then((response) => {
-        console.log(response)
+        //console.log(response)
         wordId = response.id;
 
         document.getElementById('word').innerHTML = "_ ".repeat(response.length);
     })
-console.log(getWord())
-
 
 async function getLetter(id, letter) {
     try {
@@ -70,13 +64,11 @@ function buttons() {
     document.getElementById('letters').innerHTML = displayButtons;
 }
 
-
 function handleGuess(chosenLetter) {
     letterselected.indexOf(chosenLetter) === -1 ? letterselected.push(chosenLetter) : null;
     document.getElementById(chosenLetter).setAttribute('disable', true);
 
     if (wordId.indexOf(chosenLetter) >= 0) {
-        guessedWord();
         checkIfWon();
     } else if (wordId.indexOf(chosenLetter) === -1) {
         mistakes++;
@@ -86,8 +78,8 @@ function handleGuess(chosenLetter) {
 }
 
 async function checkIfWon() {
-    const data = await getAnswer()
-    if (wordStatus === data.word) {
+    const rightWord = await getAnswer()
+    if (wordStatus === rightWord.word) {
         document.getElementById('letters').innerHTML = 'You Won!!!'
     }
 }
@@ -108,6 +100,7 @@ function updateMistakes() {
 function reset() {
     mistakes = 0;
     letterselected = [];
+    getWord();
 
     buttons();
 }
