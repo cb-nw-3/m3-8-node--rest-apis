@@ -99,9 +99,18 @@ express()
     }
   })
 
-  .get("/hangman/words", (req, res) => {
-    const wordObj = getRandomWord(words);
-    res.json(wordObj);
+  .get("/hangman/words/:wordId", (req, res) => {
+    let specificWord;
+    const providedId = req.params.wordId;
+    if (providedId) {
+      words.forEach((word) => {
+        specificWord = word;
+        if (word.id === providedId) res.json(specificWord);
+      });
+    } else {
+      const wordObj = getRandomWord(words);
+      res.json(wordObj);
+    }
   })
   .get("/hangman/guess/:wordId/:letter", (req, res) => {
     const id = req.params.wordId;

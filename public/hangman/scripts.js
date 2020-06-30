@@ -1,7 +1,6 @@
-// const data;
-// const options = {
-//   method: 'GET',
-//   body:
-// }
+const data;
+const options = {
+  method: 'GET'
+}
 
-// fetch('/hangman/')
+fetch('/hangman/')
