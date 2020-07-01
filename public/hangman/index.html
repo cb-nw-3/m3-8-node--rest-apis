@@ -6,8 +6,20 @@
     </style>
 </head>
 <body>
-    <div class="content">
-        time to get to hanging.... I mean guessing...
+    <div>
+        <h1>Welcome to the Hangman!</h1>
+        <p>The time has come to get hanging.... I mean guessing...</p>
+        <h4>INSTRUCTIONS: Only lowercase letters please! 5 attempts</h4>
+    </div>
+        <form onsubmit='submitLetter(event)'>
+            <input id='letterInput' type='text' name='submittedLetter' />
+            <button type='submit'> Submit Your Guess</button>
+        </form>
+    <div id='letters' style='display:flex;'></div>
+    <div id='message'></div>
+    <div>
+        <h3>Look at all your wrong guesses! Focus!</h3>
+        <div id='badLetter'></div>
     </div>
     <script src="scripts.js"></script>
 </body>
