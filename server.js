@@ -44,7 +44,7 @@ express()
     let result = words.find((word) => word.id === wordId);
     //console.log(result);
 
-    //THIS FUNCTION IS TO STORE THE LETTER INDICES OF THE RANDOM WORD
+    //if letter is included in the word, store the letter index position in 'returnIndices'
     const returnIndices = (word, letter) => {
       let indices = [];
       for (let i = 0; i < word.length; i++) {
@@ -52,6 +52,7 @@ express()
           indices.push(i);
         }
       }
+      console.log(indices);
       return indices;
     };
 
