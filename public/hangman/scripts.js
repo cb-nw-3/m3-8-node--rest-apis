@@ -31,9 +31,7 @@ async function getLetter(id, key) {
 //this function will update the message box with the latest user input
 //and the servers response to that input
 const updateMessage = (key, msg) => {
-  messageBox.style.color = "red";
-  messageBox.style.fontSize = "25px";
-  messageBox.innerHTML = msg;
+    messageBox.innerHTML = msg;
 };
 
 //this function will update the game when the user enters a right input
@@ -102,7 +100,6 @@ getWord().then((data) => {
     letter.id = `ltr-${i}`;
     letter.classList.add("ltr");
     letter.style.fontSize = "80px";
-    letter.style.color = `green`;
     mainContent.appendChild(letter);
   }
 });
@@ -126,7 +123,7 @@ document.body.addEventListener(
 
       //the response from the fetch will have a status key that is either
       // success or fail when the keypress is a correct letter
-      if (res.status === "sucess") {
+      if (res.status === "success") {
         //console.log("You got the right letter!");
 
         //updates the message box

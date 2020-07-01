@@ -26,21 +26,15 @@ express()
   .get("/hangman/words", (req, res) => {
       //generate random number between 0 and 10 (total of 10 words in my array) to be the index in order to choose a random word
     let randomWord = words[Math.floor(Math.random() * 10)];
-
-    //only return the id and length of the word
+//return object that contains id and letterCount as hint. not the actual word to prevent cheating
     let data = {
       id: randomWord.id,
       length: randomWord.length,
     };
-
-    console.log(data);
-
-    //return to the browser the JSON data
     res.status(200).send(data);
   })
 
-  //this endpoint returns a response whether or not the letter is inlcuded
-  //in the random word
+  //this endpoint returns a status code and letter's position
   .get("/hangman/guess/:wordId/:letter", (req, res) => {
     //store the route inputs
     let wordId = req.params.wordId;
@@ -66,28 +60,21 @@ express()
       //if the ID exists, then check if the letter entered by the user
       //is included in the random word
       if (result.word.includes(letter)) {
-        //returns a JSON response for a success
         res.status(200).send({
-          status: "sucess",
-          message: `the letter ${letter} is included`,
-          letter: `${letter}`,
+          status: "success",
           //position: `${result.word.indexOf(letter)}`, //ONLY WORKED FOR UNIQUE LETTERS
           position: returnIndices(result.word, letter),
         });
       } else {
-        //returns a JSON response for failure
         res.status(200).send({
           status: "fail",
-          message: `the letter ${letter} is NOT included`,
-          letter: `${letter}`,
-          position: "none",
         });
       }
-      //if the ID doesnt exist, send this message
+      //404 code for ID not matching
     } else {
       res
         .status(400)
-        .send({ message: "id does not match any word in the game" });
+        .send({ message: "id not found" });
     }
   })
 
