@@ -40,11 +40,11 @@ express()
     let wordId = req.params.wordId;
     let letter = req.params.letter;
 
-    //finds the word related to that ID to the rest of the data
+    //finds the word in the array that matches with the :wordId entered in html 
     let result = words.find((word) => word.id === wordId);
-    //console.log(result);
+    console.log(result);//ie:{ word: 'saturn', id: '2', length: '6' }
 
-    //if letter is included in the word, store the letter index position in 'returnIndices'
+    //THIS FUNCTION IS TO STORE THE LETTER INDICES POSITION OF THE RANDOM WORD
     const returnIndices = (word, letter) => {
       let indices = [];
       for (let i = 0; i < word.length; i++) {
@@ -56,14 +56,13 @@ express()
       return indices;
     };
 
-    //This is to check if the wordId exists in the database
+    //This is to check if the :wordId exists in the 'words' array
     if (result != undefined) {
       //if the ID exists, then check if the letter entered by the user
       //is included in the random word
       if (result.word.includes(letter)) {
         res.status(200).send({
           status: "success",
-          //position: `${result.word.indexOf(letter)}`, //ONLY WORKED FOR UNIQUE LETTERS
           position: returnIndices(result.word, letter),
         });
       } else {

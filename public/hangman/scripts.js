@@ -31,7 +31,7 @@ async function getLetter(id, key) {
 //this function will update the message box with the latest user input
 //and the servers response to that input
 const updateMessage = (key, msg) => {
-    messageBox.innerHTML = msg;
+  messageBox.innerHTML = msg;
 };
 
 //this function will update the game when the user enters a right input
