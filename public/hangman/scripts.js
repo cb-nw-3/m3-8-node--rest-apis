@@ -95,11 +95,11 @@ function hangCounter(imageCounter) {
 function startBlinking() {
   setInterval(function () {
     blink();
-  }, 1000);
+  }, 500);
 }
 function blink() {
   document.getElementById("gameOverLbl").style.display = "none";
   setTimeout(function () {
     document.getElementById("gameOverLbl").style.display = "inline";
-  }, 500);
+  }, 250);
 }
