@@ -34,7 +34,7 @@ const updateMessage = (key, msg) => {
 const updateHangman = (key, position) => {
   //update the letter based on its index, same as the html element
   position.forEach((pos) => {
-    let updateLetter = document.getElementById(`ltr-${pos}`);
+    let updateLetter = document.getElementById(`ltr-${pos}`);//see line 80
     updateLetter.innerHTML = key;
   });
 };
@@ -44,16 +44,16 @@ const checkWin = () => {
   //this array will store all correct letters and incorrect ones
   let letters = [];
 
-  //we had created h2 elements on line 78 for letter
+  //we had created h2 elements on line 74 for letter
   let hangmanLtrs = document.querySelectorAll("h2");
 
   //push the correct letter to html and replace the "_"
   hangmanLtrs.forEach((letter) => letters.push(letter.innerHTML));
 
-  //when all the "_" are replaced by letter, the full word is visible and the user won the game
+  //when all the "_" are replaced by letter, the full word is visible and the user won the game, see line 80
   let hasWon = letters.every((ltr) => ltr !== "_");
 
-  //function results in a boolean value, line 119
+  //function results in a boolean value, line 103
   return hasWon;
 };
 
@@ -65,8 +65,6 @@ let wordId = undefined;
 
 //calls getWord promise to display all the letters of the random word
 getWord().then((data) => {
-  //console.log("the word ID is", data.id, "and the word is", data.word);
-
   //assign the word id to the global var
   wordId = data.id;
 
@@ -78,7 +76,7 @@ getWord().then((data) => {
     //starting with underscore and will be updated when correct letter is hit
     letter.innerHTML = `_`;
 
-    //the id will also correspond to the index of the random word
+    //the id will also correspond to the index of the random word, line 37 and 54
     letter.id = `ltr-${i}`;
     letter.classList.add("ltr");
     letter.style.fontSize = "80px";
