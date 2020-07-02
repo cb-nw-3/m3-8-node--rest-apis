@@ -57,12 +57,13 @@ const checkWin = () => {
   return hasWon;
 };
 
+
 //##HANGMAN GAME
 
 //globar var that will hold the current random word's id
 let wordId = undefined;
 
-//fires the getWord promise to display all the letters of the random word
+//calls getWord promise to display all the letters of the random word
 getWord().then((data) => {
   //console.log("the word ID is", data.id, "and the word is", data.word);
 
@@ -71,12 +72,10 @@ getWord().then((data) => {
 
   //generate a letter char for every letter in the random word
   for (let i = 0; i < data.length; i++) {
-    //console.log(i);
-
-    //create an html elem to hold the value of a letter from the random word
+       //create an html element to hold the value of a letter from the random word
     let letter = document.createElement("h2");
 
-    //for now it will be just underscores, until a user input is registered
+    //starting with underscore and will be updated when correct letter is hit
     letter.innerHTML = `_`;
 
     //the id will also correspond to the index of the random word
@@ -87,29 +86,16 @@ getWord().then((data) => {
   }
 });
 
-//upon loading the page, the document will listen to a user input that is a
-//key down
+//keydown event
 document.body.addEventListener(
   "keydown",
   (listenKeys = (e) => {
-    //returns key value
     let key = e.key;
 
-    //console.log("User Entered Letter:", key);
-    //console.log("word id is still", wordId);
-
     getLetter(wordId, key).then((res) => {
-      //console.log(res);
-
-      //THIS WAS JUST A CHECK, THE ACTUAL WORD IS NOT FETCHABLE
-      //console.log("User entered:", key, "word is", res.letter);
-
-      //the response from the fetch will have a status key that is either
+       //the response from the fetch will have a status key that is either
       // success or fail when the keypress is a correct letter
       if (res.status === "success") {
-        //console.log("You got the right letter!");
-
-        //updates the message box
         updateMessage(key, `There's the letter "${key}"!`);
 
         //updates the hangman game with the latest correct input
