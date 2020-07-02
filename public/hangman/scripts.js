@@ -1,35 +1,29 @@
 let mainContent = document.getElementById("content");
 let messageBox = document.getElementById("box");
 
-//######################## ASYNC AWAIT FUNCTIONS ###########################
+//promises and async await
 
 //this function will return a random word
 async function getWord() {
   try {
     const res = await fetch("/hangman/words");
-    //console.log(res);
     return res.json();
   } catch (err) {
     console.log(err);
   }
 }
 
-//this function will fetch a letter from the randomly generated word
-//based on that word's id in the db and compare it to the keypress by the user
+//this function will fetch a letter from the randomly generated word based on that word's id in the database and compare it to the keypress by the user
 async function getLetter(id, key) {
   try {
     const res = await fetch(`/hangman/guess/${id}/${key}`);
-    //console.log(res);
     return res.json();
   } catch (err) {
     console.log(err);
   }
 }
 
-//########################### EXTRA FUNCTIONS #########################
-
-//this function will update the message box with the latest user input
-//and the servers response to that input
+//this function will update the message box with the latest user input and the servers response to that input
 const updateMessage = (key, msg) => {
   messageBox.innerHTML = msg;
 };
@@ -127,7 +121,7 @@ document.body.addEventListener(
         //console.log("You got the right letter!");
 
         //updates the message box
-        updateMessage(key, `letter "${key}" is CORRECT!`);
+        updateMessage(key, `There's the letter "${key}"!`);
 
         //updates the hangman game with the latest correct input
         updateHangman(key, res.position);
@@ -141,7 +135,7 @@ document.body.addEventListener(
         }
       } else {
         //console.log("You got the wrong letter");
-        updateMessage(key, `letter "${key}" is WRONG!`);
+        updateMessage(key, `NO LETTER "${key}" :(`);
       }
     });
   })
