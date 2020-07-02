@@ -1,7 +1,7 @@
 let mainContent = document.getElementById("content");
 let messageBox = document.getElementById("box");
 
-//promises and async await
+//##promises and async await
 
 //this function will return a random word
 async function getWord() {
@@ -29,17 +29,9 @@ const updateMessage = (key, msg) => {
 };
 
 //this function will update the game when the user enters a right input
-//requires the user input and the indices of the random word (from be)
-//NOTE: position returns as an array of all indices where a letter may be
-//since words can have multiple occurences of the same letter
+//requires the user input and the indices of the random word (from back-end)
+//NOTE: position returns as an array of all indices where a letter may be since words can have multiple occurences of the same letter
 const updateHangman = (key, position) => {
-  //THIS IS A CONSOLE LOG CHECK
-  //console.log("this word has this many letters:", letters.length);
-  //console.log("letter to be added", key);
-  //console.log("word position is", position);
-  //console.log(position);
-  //position.forEach((pos) => console.log(pos));
-
   //update the letter based on its index, same as the html element
   position.forEach((pos) => {
     let updateLetter = document.getElementById(`ltr-${pos}`);
@@ -52,23 +44,20 @@ const checkWin = () => {
   //this array will store all correct letters and incorrect ones
   let letters = [];
 
-  //the hidden letters are all h2 tags
+  //we had created h2 elements on line 78 for letter
   let hangmanLtrs = document.querySelectorAll("h2");
 
-  //when a keypress is registered, and if it is correct, then it will be
-  //added into the letters array
+  //push the correct letter to html and replace the "_"
   hangmanLtrs.forEach((letter) => letters.push(letter.innerHTML));
-  //console.log(letters);
 
-  //this checks if the letters array contains anything else but the arbitrary
-  //underscore placeholders for empty letters
+  //when all the "_" are replaced by letter, the full word is visible and the user won the game
   let hasWon = letters.every((ltr) => ltr !== "_");
 
-  //function results in a boolean value
+  //function results in a boolean value, line 119
   return hasWon;
 };
 
-//########################### HANGMAN GAME ############################
+//##HANGMAN GAME
 
 //globar var that will hold the current random word's id
 let wordId = undefined;
