@@ -3,7 +3,11 @@
 const express = require('express');
 // const bodyParser = require('body-parser')// not requiered any longer;
 const morgan = require('morgan');
-const { handlerClientsData } = require('./handlers');
+const {
+  handlerClientsData,
+  handlerWordProvider,
+  handlerWordGuess,
+} = require('./handlers');
 
 const PORT = process.env.PORT || 8000;
 
@@ -24,5 +28,7 @@ express()
   // endpoints
   .get('/clientsData*', handlerClientsData)
 
+  //hangman end points
+  .get('/hangman/words', handlerWordProvider)
+  .get('/hangman/guess/:wordId/:letter', handlerWordGuess)
   .listen(PORT, () => console.log(`Listening on port ${PORT}`));
-1;
