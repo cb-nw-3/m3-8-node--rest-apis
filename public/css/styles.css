@@ -163,6 +163,8 @@ body {
 
 .gameInfo {
   flex: 1;
+  padding-left: 10px;
+  font-family: 'Roboto', monospace;
 }
 
 .keyboard {
