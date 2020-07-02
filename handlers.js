@@ -75,5 +75,5 @@ const handlerWordGuess = (req, res) => {
 module.exports = {
   handlerClientsData,
   handlerWordProvider,
-  handlerWordGuess,
+  handlerWftgtvbordGuess,
 };
