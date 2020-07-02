@@ -139,11 +139,11 @@ body {
   display: flex;
   flex-direction: column;
   margin-top: 24px;
-  padding: 10px;
+  padding: 0 10px;
 }
 
 .infoScreen {
-  width: 100vh;
+  width: 80vw;
   height: 300px;
   border: 0.4rem solid black;
   margin: 50px 0;
@@ -165,10 +165,6 @@ body {
   font-family: 'Roboto', monospace;
 }
 
-.keyboard {
-  width: 100vh;
-}
-
 .keysRow1,
 .keysRow2,
 .keysRow3 {
@@ -178,6 +174,10 @@ body {
   justify-content: center;
 }
 
+.keyboard {
+  width: 95vw;
+}
+
 .key {
   border: 0.4rem solid black;
   border-radius: 0.5rem;
@@ -185,12 +185,12 @@ body {
   font-size: 1.5rem;
   padding: 1rem 0.5rem;
   transition: all 0.07s ease;
-  width: 80px;
   text-align: center;
   color: white;
   background: rgba(0, 0, 0, 0.4);
   text-shadow: 0 0 0.5rem black;
   cursor: pointer;
+  min-width: 80px;
 }
 
 .selectedKey {
