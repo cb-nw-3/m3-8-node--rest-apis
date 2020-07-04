@@ -51,4 +51,4 @@ const words = [
     }
 ]
 
-module.exports = { words }
+module.exports = words

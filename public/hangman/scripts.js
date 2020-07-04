@@ -1,110 +1,56 @@
+let game = {};
+let guesses = [];
 
-let maxWrong = 5;
-let mistakes = 0;
-let letterselected = [];
-let wordId = undefined;
+let answers = [];
 
-//return a random word
-async function getWord() {
-    try {
-        const res = await fetch("/hangman/words");
-        // console.log(res.json());
-        const data = await res.json();
-        return data;
-    } catch (err) {
-        console.log(err);
-    }
-}
+// get the word
+const getWord = async () => {
+    const response = await fetch("http://localhost:8000/hangman/words");
+    const data = await response.json();
+    game = data;
+};
 
-async function getAnswer() {
-    try {
-        const res = await fetch(`/hangman/answer/word/${wordId}`);
-        // console.log(res.json());
-        const data = await res.json();
-        return data;
-    } catch (err) {
-        console.log(err);
-    }
-}
+const starGame = async () => {
+    await getWord();
 
-//Display each letter
-getWord()
-    .then((response) => {
-        //console.log(response)
-        wordId = response.id;
+    // Display '_ '
+    answers = game.word.split("").map((letter) => false);
+    const answerElement = document.getElementById("answer");
+    answerElement.innerText = answers.map((Element) => "_ ").join("");
 
-        document.getElementById('word').innerHTML = "_ ".repeat(response.length);
-    })
+    document.addEventListener("keydown", async (event) => {
+        // display the guesses
+        guesses.push(event.key);
+        const guessesElement = document.getElementById("guesses");
+        guessesElement.innerText = guesses.toString();
 
-async function getLetter(id, letter) {
-    try {
-        const res = await fetch(`/hangman/guess/${id}/${letter}`);
-        return res.json();
-    } catch (err) {
-        console.log(err);
-    }
-}
+        const response = await fetch(
+            `http://localhost:8000/hangman/guess/${game.id}/${event.key}`
+        );
+        const data = await response.json();
 
-//Display max mistakes number
-document.getElementById('maxWrong').innerHTML = maxWrong;
+        answers = answers.map((answer, index) => {
+            if (answer) {
+                return answer;
+            }
 
-//Add buttons
-function buttons() {
-    let displayButtons = 'abcdefghijklmnopqrstuvwxyz'.split('').map(letters =>
-        `
-        <button
-            id='` + letters + `'
-            onClick="handleGuess('` + letters + `')"
-        > 
-            ` + letters + `
+            if (data[index]) {
+                return game.word[index];
+            }
+            return data[index];
+        });
 
-        </button>
-        `
-    ).join('');
-    document.getElementById('letters').innerHTML = displayButtons;
-}
+        const answerElement = document.getElementById("answer");
+        answerElement.innerText = answers
+            .map((element) => {
+                if (element) {
+                    return `${element} `;
+                } else {
+                    return "_ ";
+                }
+            })
+            .join("");
+    });
+};
 
-function handleGuess(chosenLetter) {
-    letterselected.indexOf(chosenLetter) === -1 ? letterselected.push(chosenLetter) : null;
-    document.getElementById(chosenLetter).setAttribute('disable', true);
-
-    if (wordId.indexOf(chosenLetter) >= 0) {
-        checkIfWon();
-    } else if (wordId.indexOf(chosenLetter) === -1) {
-        mistakes++;
-        updateMistakes();
-        checkIfLost();
-    }
-}
-
-async function checkIfWon() {
-    const rightWord = await getAnswer()
-    if (wordStatus === rightWord.word) {
-        document.getElementById('letters').innerHTML = 'You Won!!!'
-    }
-}
-async function checkIfLost() {
-    if (mistakes === maxWrong) {
-        // getAnswer()
-        // .then(asnwer => )
-        const data = await getAnswer()
-        document.getElementById('word').innerHTML = data.word
-        document.getElementById('letters').innerHTML = 'You Lost!!!'
-    }
-}
-
-function updateMistakes() {
-    document.getElementById('mistakes').innerHTML = mistakes;
-}
-
-function reset() {
-    mistakes = 0;
-    letterselected = [];
-    getWord();
-
-    buttons();
-}
-
-buttons();
-reset();
-
+starGame();
