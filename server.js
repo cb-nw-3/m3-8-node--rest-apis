@@ -102,23 +102,24 @@ express()
   .get("/hangman/words/:wordId", (req, res) => {
     let specificWord;
     const providedId = req.params.wordId;
-    if (providedId) {
-      words.forEach((word) => {
-        specificWord = word;
-        if (word.id === providedId) res.json(specificWord);
-      });
-    } else {
-      const wordObj = getRandomWord(words);
-      res.json(wordObj);
-    }
+    words.forEach((word) => {
+      specificWord = word;
+      if (word.id === providedId) res.json(specificWord);
+    });
   })
+
+  .get("/hangman/words", (req, res) => {
+    const wordObj = getRandomWord(words);
+    res.status(200).json(wordObj);
+  })
+
   .get("/hangman/guess/:wordId/:letter", (req, res) => {
     const id = req.params.wordId;
     const letter = req.params.letter;
 
     const letterPosition = getLetterPosition(id, letter);
 
-    res.send(letterPosition);
+    res.status(200).json(letterPosition);
   })
 
   .listen(PORT, () => console.log(`Listening on port ${PORT}`));
