@@ -10,21 +10,22 @@ let playerInput = "";
 let partialWord = [];
 let playerGuesses = [];
 
-fetch("/hangman/words", {
-  method: "GET",
-})
-  .then((res) => res.json())
-  .then((res) => {
-    console.log(res);
-    wordId = res.id;
-    wordLength = res.letterCount;
-    for (let i = 0; i < wordLength; i++) {
-      partialWord.push("_");
-      partialWordElement.innerText = partialWord.join(" ");
-    }
-  });
+const requestWord = async () => {
+  const response = await fetch("http://localhost:8000/hangman/words");
+  const data = await response.json();
 
-function handleSubmit(event) {
+  wordId = data.id;
+  wordLength = data.letterCount;
+
+  for (let i = 0; i < wordLength; i++) {
+    partialWord.push("_");
+    partialWordElement.innerText = partialWord.join(" ");
+  }
+};
+
+requestWord();
+
+const handleSubmit = async (event) => {
   event.preventDefault();
   playerInput = playerInputElement.value.toLowerCase();
 
@@ -43,28 +44,25 @@ function handleSubmit(event) {
       "You have already guessed this letter. Try Another one.";
     return;
   }
-  fetch(`/hangman/guess/${wordId}/${playerInput}`, {
-    method: "GET",
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      //console.log(res);
-      if (res.error) {
-        console.log("error", res.error);
-        return;
-      }
-      let letterPositionArray = res.letterPosition;
 
-      playerGuesses.push(playerInput);
-      playerGuessesElement.innerText = `Letters guessed: [${playerGuesses.join(
-        " "
-      )}]`;
+  const response = await fetch(`/hangman/guess/${wordId}/${playerInput}`);
+  const data = await response.json();
 
-      letterPositionArray.forEach((bool, index) => {
-        if (bool) {
-          partialWord.splice(index, 1, playerInput);
-        }
-      });
-      partialWordElement.innerText = partialWord.join(" ");
-    });
-}
+  if (data.error) {
+    console.log("error", data.error);
+    return;
+  }
+  let letterPositionArray = data.letterPosition;
+
+  playerGuesses.push(playerInput);
+  playerGuessesElement.innerText = `Letters guessed: [${playerGuesses.join(
+    " "
+  )}]`;
+
+  letterPositionArray.forEach((bool, index) => {
+    if (bool) {
+      partialWord.splice(index, 1, playerInput);
+    }
+  });
+  partialWordElement.innerText = partialWord.join(" ");
+};

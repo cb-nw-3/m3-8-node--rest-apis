@@ -1,4 +1,6 @@
 const { clients } = require("./data/clients");
+const { wordObjectsArray } = require("./data/wordBank");
+const { masterKey } = require("./masterKey");
 
 const handleUserRequest = (req, res) => {
   console.log("req.body: ", req.body);
@@ -43,6 +45,11 @@ const handleAdminWord = (req, res) => {
 
 const handlePlayerGuess = (req, res) => {
   const { wordId, letter } = req.params;
+
+  //server-side input validation just to be sure
+  if (letter.length !== 1) {
+    res.status(400).send({ status: "error", error: "bad input" });
+  }
 
   const secretWord = wordObjectsArray.find(
     (item) => item.id === Number(wordId)

@@ -4,8 +4,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 
-const { wordObjectsArray } = require("./data/wordBank");
-const { masterKey } = require("./masterKey");
 const {
   handleUserRequest,
   handleRandomWordRequest,
