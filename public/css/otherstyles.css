@@ -1,0 +1,27 @@
+#mybox {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    justify-content: center;
+    align-content: center;
+    padding: 30px;
+}
+
+#gallows {
+    width: 100%;
+    border: 3px grey solid;
+    padding: 30px;
+    display: flex;
+}
+
+.letterbox {
+    width: 20px;
+    height: 40px;
+    margin-right: 20px;
+    border-radius: 5px;
+    font-size: 30px;
+}
+
+.letterboxBorder {
+    border: 2px black solid;
+}

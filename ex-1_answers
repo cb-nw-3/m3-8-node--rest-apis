@@ -1,0 +1,26 @@
+stock
+
+GET /stock - pulls list of all stock
+GET /stock/12 - pulls data for single item
+POST /stock - creates a new item
+PUT /stock/12 - overwrites a specific, previously existing item
+PATCH /stock/12 - updates a specific item
+DELETE /stock/12 - deletes a specific item
+
+customers
+
+GET /clients - pulls list of all clients
+GET /clients/12 - pulls data for single client
+POST /client - creates a new client profile
+PUT /clients/12 - overwrites a specific, previously existing client
+PATCH /clients/12 - updates a specific client
+DELETE /clients/12 - deletes a specific client
+
+seating
+
+GET /seats - pulls list of all seats
+GET /seats/12 - pulls data for single seat
+POST /seat - creates a new seat
+PUT /seats/12 - overwrites a specific, previously existing seat
+PATCH /seats/12 - updates a specific seat
+DELETE /seats/12 - deletes a specific seat
