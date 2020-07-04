@@ -60,7 +60,7 @@ const wordGuesser = (req, res) => {
     });
 
     if (numTrue === 0) {
-        res.status(404).send(boolArray);
+        res.status(404).send("404");
     } else {
         res.status(200).send(boolArray);
     }

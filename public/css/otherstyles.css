@@ -4,13 +4,12 @@
     width: 800px;
     justify-content: center;
     align-content: center;
-    border: 2px red solid;
     padding: 30px;
 }
 
 #gallows {
     width: 100%;
-    border: 3px goldenrod solid;
+    border: 3px grey solid;
     padding: 30px;
     display: flex;
 }
@@ -18,7 +17,11 @@
 .letterbox {
     width: 20px;
     height: 40px;
-    border: 2px black solid;
     margin-right: 20px;
     border-radius: 5px;
+    font-size: 30px;
+}
+
+.letterboxBorder {
+    border: 2px black solid;
 }
