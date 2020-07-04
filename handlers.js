@@ -65,9 +65,7 @@ const handlerWordGuess = (req, res) => {
   );
 
   const WORD_SPLIT = WORD_OBJ.word.split('');
-  const RESPONSE = WORD_SPLIT.map((letter) =>
-    letter === req.params.letter ? true : false
-  );
+  const RESPONSE = WORD_SPLIT.map((letter) => letter === req.params.letter);
 
   res.status(200).send(RESPONSE);
 };
