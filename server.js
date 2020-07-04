@@ -36,21 +36,34 @@ const wordGuesser = (req, res) => {
     let wordId = Number(req.params.wordId);
     let letter = req.params.letter;
 
+    // grab the right word from the wordData array
+
     let relevantWord = (wordData.find(item => item.id === wordId)).word;
 
     let boolArray = [];
+
+    let numTrue = 0;
 
     // there's got to be a more elegant way to write this.
 
     relevantWord.split('').forEach(item => {
         if (item === letter) {
+
+            // I could check the array for non-false values...
+            // ...but doing it this way is easier.
+
+            numTrue++;
             boolArray.push(true);
         } else {
             boolArray.push(false);
         }
     });
 
-    console.log(boolArray);
+    if (numTrue === 0) {
+        res.status(404).send(boolArray);
+    } else {
+        res.status(200).send(boolArray);
+    }
 
 }
 
