@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="stylesheet" href="../css/styles.css" />
-    <style>
-    </style>
+    <title>Hangman</title>
 </head>
+
 <body>
     <div class="content">
-        time to get to hanging.... I mean guessing...
+        <h1>Hangman Game!</h1>
+        <div>
+            <h3 id="answer"></h3>
+            <h4>Type a letter to guess the word.</h4>
+
+            <h5 id="guesses"></h5>
+        </div>
+        <div>
+            <p id="message"></p>
+            <div id="letters"></div>
+            <button onclick="window.location.reload();">Reset</button>
+        </div>
+        <script src="scripts.js"></script>
     </div>
-    <script src="scripts.js"></script>
 </body>
 
 </html>
