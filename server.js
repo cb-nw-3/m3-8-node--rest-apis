@@ -8,7 +8,7 @@ const { clients } = require("./data/clients");
 const { wordObjectsArray } = require("./data/wordBank");
 const { masterKey } = require("./masterKey");
 
-// console.log(wordObjectsArray[42]);
+//console.log(wordObjectsArray[42]);
 
 const handleUserRequest = (req, res) => {
   console.log("req.body: ", req.body);
@@ -48,14 +48,21 @@ express()
     );
     let word = wordObjectsArray[randomIndex];
 
+    if (!word) {
+      res.status(500).send({ status: "error", error: "word doesn't exist" });
+    }
+
     res.status(200).send({ id: word.id, letterCount: word.letterCount });
   })
 
   .get("/hangman/words/:wordId/:key", (req, res) => {
-    let key = req.params.key;
-    let wordId = req.params.wordId;
+    const { key, wordId } = req.params;
+    const word = wordObjectsArray[wordId];
 
-    let word = wordObjectsArray[wordId];
+    if (!word) {
+      res.status(404).send({ status: "error", error: "invalid wordId" });
+      return;
+    }
     if (key === masterKey) {
       res.status(200).send({ word });
     } else {
@@ -63,20 +70,19 @@ express()
     }
   })
 
-  .get("/hangman/guess/:wordID/:letter", (req, res) => {
-    let wordId = req.params.wordID;
-    let letter = req.params.letter;
+  .get("/hangman/guess/:wordId/:letter", (req, res) => {
+    const { wordId, letter } = req.params;
 
-    if (letter.length !== 1) {
-      res.status(400).send({ status: "error", error: "bad input" });
-    }
-
-    let secretWord = wordObjectsArray.find(
+    const secretWord = wordObjectsArray.find(
       (item) => item.id === Number(wordId)
     );
 
-    let wordArray = secretWord.word.split("");
-    let letterPosition = wordArray.map((item) => {
+    if (!secretWord) {
+      res.status(404).send({ status: "error", error: "invalid wordId" });
+      return;
+    }
+    const wordArray = secretWord.word.split("");
+    const letterPosition = wordArray.map((item) => {
       return item === letter;
     });
     //console.log(letter);

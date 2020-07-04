@@ -10,11 +10,17 @@
       <div class="partialWord">this should get replaced</div>
       <div class="playerGuesses">Letters guessed: []</div>
       <form onsubmit="handleSubmit(event)">
-        <input type="letter" name="playerInput" class="playerInput" />
+        <input
+          type="letter"
+          name="playerInput"
+          class="playerInput"
+          autocomplete="off"
+        />
         <div>
           <button class="submit-button" type="submit">Guess A Letter!</button>
         </div>
       </form>
+      <div class="error-message"></div>
     </div>
 
     <script src="scripts.js"></script>
