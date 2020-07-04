@@ -44,8 +44,7 @@ form {
 .submitWord {
   text-align: center;
 }
-.submitWordBtn {
-}
+
 .hangMan {
   display: flex;
   flex-direction: column;

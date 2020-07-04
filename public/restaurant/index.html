@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="firstCol">
+      <div class="firstRow">
+        <form onsubmit="returnCustomer(event)">
+          <label for="customerID">Customer ID:</label>
+          <input
+            type="text"
+            id="customerID"
+            name="customerID"
+            placeholder="Enter ID"
+          /><br />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+      <div class="customerInfo" id="customerInfo"></div>
+    </div>
+    <script src="scripts.js"></script>
+  </body>
+</html>
