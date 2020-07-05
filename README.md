@@ -18,7 +18,26 @@ Provide him with a series of REST endpoints that meet all, or most of the RESTfu
 
 _This activity is more about the discussion in how to best organize data endpoints. There will not be any coding, unless you really want to provide Greg with working endpoints that he can test in Insomnia._
 
+
 ---
+Answer 1:
+
+- endpoints for stock:
+.get('/stock')  - request a list of all stock
+.get('/stock/:id') - request the stock of a specific item
+.put('/stock/:id') - to update the stock for a specific item
+.delete('/stock/:id') - to delete out of stock or discontinued coffee
+.post('/stock/:id') - to create new type of coffee
+
+- endpoints for customers:
+.get('/customers') - to fetch list of existing customers
+.get('/customer/:id') - to fetch a specific customer by its id
+.post('/customers') - to add a new customer to the list
+
+- endpoints for seating:
+.get('/seats') - request a list of all seats in the cafe
+.get('/seat/:id') - request a specific seat status (available or occupied)
+.patch('/seat/:id') - update the seat status (available or occupied)
 
 ## Exercise 2 (Optional)
 
