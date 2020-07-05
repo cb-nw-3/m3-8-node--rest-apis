@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="stylesheet" href="../css/styles.css" />
-    <style>
-    </style>
-</head>
-<body>
-    <div class="content">
-        time to get to hanging.... I mean guessing...
-    </div>
-    <script src="scripts.js"></script>
-</body>
-
+    <head>
+        <link rel="stylesheet" href="../css/styles.css" />
+        <style></style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <h2>Guess A Letter</h2>
+            <form onsubmit="guessLetter(event)">
+                <input id="letter" type="text" name="guess" />
+                <button type="submit">Take a Guess</button>
+            </form>
+            <div>
+                <h3>Bad Letters</h3>
+                <div class="badLetter"></div>
+                <h3>My Word</h3>
+                <div class="myWord"></div>
+            </div>
+        </div>
+        <script src="scripts.js"></script>
+    </body>
 </html>
