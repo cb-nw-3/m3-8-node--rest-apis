@@ -6,7 +6,7 @@ _see bottom of this page, if you need help getting this onto your computer._
 
 ## Exercise 1 - API Architecture
 
-There s a corner cafe that wants your help to propel itself into the digital age... The owner, Greg, has read extensively and is anxious to get started, but lacks the technical chops to get his digital transformation off the ground. He _knows_ that big data is the way to go. He is planning on tracking _everything_ in his cafe.
+There's a corner cafe that wants your help to propel itself into the digital age... The owner, Greg, has read extensively and is anxious to get started, but lacks the technical chops to get his digital transformation off the ground. He _knows_ that big data is the way to go. He is planning on tracking _everything_ in his cafe.
 
 He needs an RESTful API to serve all of the data that he'll have and gather more!
 
@@ -24,7 +24,7 @@ _This activity is more about the discussion in how to best organize data endpoin
 
 There is a `clients.js` file inside of the data folder.
 
-Create RESTful endpoint (only one) that expects a search query and responds with the requested data, and/or the appropirate HTTP code.
+Create RESTful endpoint (only one) that expects a search query and responds with the requested data, and/or the appropriate HTTP code.
 
 ---
 
