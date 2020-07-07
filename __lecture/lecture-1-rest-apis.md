@@ -94,6 +94,7 @@ _Matches `CRUD` (Create, Read, Update, Delete)_
 ---
 
 ## HTTP Codes
+rest must return well defined status codes (404, 200 etc)
 
 - `200` OK — Show that the operation performed is successful.
 - `201` CREATED — When you use POST method to create a new resource.

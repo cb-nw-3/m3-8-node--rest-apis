@@ -18,6 +18,48 @@ Provide him with a series of REST endpoints that meet all, or most of the RESTfu
 
 _This activity is more about the discussion in how to best organize data endpoints. There will not be any coding, unless you really want to provide Greg with working endpoints that he can test in Insomnia._
 
+
+Stock
+
+Restful endpoints
+
+GET /products
+200 response - JSON Product Array 
+
+GET /product/id
+200 response - JSON Product Object by id
+
+POST /product/id
+201 response - id of JSON Product Object created and stored on server
+
+PUT /product/id - replaces id Of existing product
+200 response - id and entire Product that has changed
+
+DELETE /product/id - Deletes product #12
+200 response - JSON Product Object by id deleted
+
+GET /allseats
+200 response - JSON AllSeats Array =
+
+PATCH /allseats/seatID - Update Seat to occupied
+200 response - occuped seatID
+
+GET /customers
+200 response - JSON Customer Array 
+
+
+POST /newcustomer/id
+201 response - id of JSON Customer created and stored on server
+
+
+PATCH /existingcustomer/id
+201 response - JSON array, [{old_customer_json}, {new_customer_json}]
+
+
+
+
+
+
 ---
 
 ## Exercise 2 (Optional)
