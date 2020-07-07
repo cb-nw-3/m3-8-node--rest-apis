@@ -22,9 +22,9 @@ express()
   .use(express.static("public"))
   .use(bodyParser.json())
   .use(express.urlencoded({ extended: false }))
-  .get("/hangman/words", handleWords)
-  .get("/hangman/guess/:wordId/:letter", handleGuess)
 
   // endpoints
+  .get("/hangman/words", handleWords)
+  .get("/hangman/guess/:wordId/:letter", handleGuess)
 
   .listen(PORT, () => console.log(`Listening on port ${PORT}`));
