@@ -4,8 +4,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const handleWords = require('./handlers');
-const handleGuess = require('./handlers');
+const handleWords = require('./handlers/handleWords');
+const handleGuess = require('./handlers/handleGuess');
 
 const PORT = process.env.PORT || 8000;
 

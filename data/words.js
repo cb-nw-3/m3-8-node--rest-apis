@@ -21,7 +21,7 @@ const words = [
     { word: 'bomber', id: '18', letterCount: '6'},
     { word: 'outlet', id: '19', letterCount: '6'},
 ];
-//This export works???
+
 module.exports = words;
 
 
