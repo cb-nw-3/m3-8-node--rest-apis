@@ -57,11 +57,12 @@ h1 {
   font-size: 36px; }
 
 h2 {
-  font-size: 32px; }
+  font-size: 3rem; }
 
 h3 {
-  font-size: 24px;
-  margin-bottom: 1em; }
+  font-size: 4rem;
+  margin-bottom: 1em; 
+}
 
 h4 {
   font-size: 20px; }
@@ -84,7 +85,7 @@ codeblock {
   padding: 12px 14px; }
 
 body {
-  background: #fafafa;
+  background: #abd1c6;
   display: flex;
   flex-direction: column;
   min-height: 100vh; }
@@ -104,7 +105,11 @@ body {
 .content {
   display: flex;
   flex-direction: column;
-  margin-top: 24px; }
+  align-items: center;
+  margin: 48px; 
+  border-radius: 12px;
+  background-color: #004643;
+}
 
 .box {
   border: 1px solid #707070;
@@ -117,6 +122,11 @@ body {
   border: 1px solid #cacaca;
   margin: 12px 32px 6px 0;
   padding: 12px 14px; }
+
+#game-title, #answer, #guesses {
+  margin: 50px;
+  color: #fffffe;
+}
 
 @media screen and (min-width: 900px) {
   .content {
