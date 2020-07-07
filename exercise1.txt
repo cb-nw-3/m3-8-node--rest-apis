@@ -1,0 +1,48 @@
+// exercise one discussion
+
+
+GET
+POST
+DELETE
+PUT
+HEAD
+CONNECT
+OPTIONS
+PATCH
+
+
+/customers
+GET - Returns all the cafe's customers
+POST - Adds a new cafe customers
+DELETE - Delete all customers
+
+/customers/{customer_id}
+GET - Individual customer
+PUT - Update customer
+DELETE - Removes a cafe customer
+
+/stock
+GET - All of the stock
+POST - New one
+DELETE - Delete all stock
+
+/stock/{stock_id}
+GET - Specific stock
+PUT - Update quantity
+DELETE - Delete stock
+
+/seating
+GET - All seats
+POST - Add new tables
+DELETE - Delete tables
+
+/seating/{seat_id}
+GET - Specific seat
+PUT - Add seat
+DELETE - Delete seat
+
+
+
+
+
+

@@ -1,0 +1,23 @@
+body {
+  margin: 100px;
+  background-color: brown;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.content {
+  background-color: white;
+  padding: 50px;
+  border-radius: 25px;
+}
+
+#answer {
+  border: 1px black solid;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+#guesses {
+  border: 1px black solid;
+  padding: 15px;
+  border-radius: 10px;
+}
