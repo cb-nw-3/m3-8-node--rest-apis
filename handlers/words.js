@@ -7,8 +7,11 @@ const handleWords = (req, res) => {
     if (!randomWord) {
         res.status(500).send('Internal Error')
     }
-    
-    res.status(200).send(randomWord)
+    let hiddenWord = {
+        wordId: randomWord.id,
+        letterCount: randomWord.letterCount
+    }
+    res.status(200).json(hiddenWord)
 }
 
 module.exports = handleWords;
