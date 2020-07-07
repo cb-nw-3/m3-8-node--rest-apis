@@ -1,8 +1,11 @@
 'use strict';
 
+//Imports
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const handleWords = require('./handlers');
+const handleGuess = require('./handlers');
 
 const PORT = process.env.PORT || 8000;
 
@@ -18,5 +21,6 @@ express()
     .use(express.urlencoded({extended: false}))
 
     // endpoints
-
+    .get('/hangman/words', handleWords)
+    .get('/hangman/guess/:wordId/:letter', handleGuess)
     .listen(PORT, () => console.log(`Listening on port ${PORT}`));
