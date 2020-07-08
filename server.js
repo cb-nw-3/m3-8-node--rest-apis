@@ -24,7 +24,7 @@ const returnClientInfo = (req, res) =>
 const returnRandomWord = (req, res) => 
 {
     // res.send(201)
-    //console.log("test");
+    console.log("returnRandomWord");
    // console.log(words_array);
 
     let word = words_array[Math.floor(Math.random() * words_array.length)];
@@ -36,8 +36,18 @@ const returnRandomWord = (req, res) =>
 const returnGuessResult = (req, res) => 
 {
     // res.send(201)
+
+    console.log("returnGuessResult");
     let wordID = Number(req.params.wordID);
     let letter = req.params.letter;
+
+
+    if (wordID === undefined || letter === undefined )
+    {
+        console.log()
+        return res.status(400).send("bad request");
+    }
+
 
     console.log(wordID);
    // console.log(words_array);
@@ -46,30 +56,26 @@ const returnGuessResult = (req, res) =>
 
     console.log(word_from_array);
 
+    if (!word_from_array)
+    {
+        console.log("word is undefined");
+        return res.status(400).send("word does not exist in database");
+
+    }
+
 
     if (word_from_array.word.includes(letter))
     {
         console.log("you guessed a letter in the word");
     }
-    let single_word_array = word_from_array.word.split();
+    let single_word_array = word_from_array.word.split("");
 
     console.log(single_word_array);
-    let word_guesses = single_word_array.map(element => 
-        {
-            if (element === letter)
-            {
-                return true
-            }
-            else
-            {
-                return false
-            }
-        });
+    console.log(letter);
 
+    let guesses = single_word_array.map(element => element === letter);
 
-
-
-    res.send(200, {guess_array:word_guesses});
+    res.send(200, {guess_array:guesses});
 }
 
 
