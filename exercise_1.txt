@@ -1,0 +1,24 @@
+For dealing with Stock
+
+GET /stock - to get all the items in stock
+GET /stock/12 - provides information on item 12 in stock
+POST /stock - creates new item in stock
+PUT /stock/12 - updates all information of item 12 in stock
+PATCH /stock/12 - updates one property of item 12
+DELETE /stock/12 - deletes item 12 from stock
+
+For dealing with customer information
+GET /customers - get all the customers stored in database
+GET /customer/10 - get information of Customer #10 in database
+GET /customer/10/order/12 - get information of Order #12 of Customer #10
+POST /customers - create a new customer profile
+PUT /customer/12 - update or overwrite information of customer #12
+PUT /customer/10/order/12 - update Order #12 of Customer #10
+PATCH /customer/12 - update some information of customer #12
+DELETE /customer/12 - delete customer #12 from database
+
+For dealing with seating
+GET /seating - get information on all seats in restaurant
+POST /seat - create a new seat
+PUT /seat/15 - update or overwrite Seat #15
+DELETE /seat/15 - delete Seat #15  
