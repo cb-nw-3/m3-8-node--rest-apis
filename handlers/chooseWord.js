@@ -13,10 +13,11 @@ const handleChooseWord = (req, res) => {
   }
 
   // return a JSON object with id and letterCount
-  return res.status(200).json({
-    wordId: wordIndex,
-    letterCount: chosenWord.letterCount,
-  });
+  // return res.status(200).json({
+  //   wordId: wordIndex,
+  //   letterCount: chosenWord.letterCount,
+  // });
+  return res.status(200).json(chosenWord);
 };
 
 module.exports = handleChooseWord;

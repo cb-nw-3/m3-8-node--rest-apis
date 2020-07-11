@@ -11,6 +11,7 @@ const handleGuessWord = (req, res) => {
 
   //Find word with respect to wordId from words array
   const foundWord = words.find((word) => word.id === wordId);
+  console.log(foundWord.word);
 
   //If no word is found based on wordId, return 404 status
   if (!foundWord) {
@@ -21,6 +22,8 @@ const handleGuessWord = (req, res) => {
   const booleanArray = foundWord.word
     .split("")
     .map((letterInWord) => letterInWord === letter);
+
+  res.json(booleanArray);
 };
 
 module.exports = handleGuessWord;
