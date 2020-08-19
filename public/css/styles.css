@@ -1,0 +1,62 @@
+.title {
+  text-align: center;
+}
+.content {
+  display: flex;
+}
+.screenLeft {
+  flex: 1;
+  flex-direction: column;
+}
+.enterLetter {
+  display: flex;
+  justify-content: center;
+}
+form {
+  text-align: center;
+  margin: 1%;
+}
+.screenRight {
+  flex: 1;
+}
+.hangManImg {
+  display: flex;
+  justify-content: center;
+}
+.word {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 50vh;
+  text-align: center;
+}
+.letters {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+}
+.letter {
+  border: 1px solid black;
+  margin: 1%;
+  width: 30px;
+  height: 40px;
+}
+.submitWord {
+  text-align: center;
+}
+
+.hangMan {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+}
+.gameOver {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-weight: bold;
+  font-size: 40px;
+  transform: translate(-50%, -50%);
+}

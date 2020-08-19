@@ -1,15 +1,46 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <link rel="stylesheet" href="../css/styles.css" />
-    <style>
-    </style>
-</head>
-<body>
-    <div class="content">
-        time to get to hanging.... I mean guessing...
+  </head>
+  <body>
+    <div class="title"><h1>Welcome to Hangman</h1></div>
+    <div class="content" id="content">
+      <div class="screenLeft">
+        <div class="word">
+          <div class="letters" id="wordToComplete"></div>
+        </div>
+        <div class="enterLetter">
+          <form onsubmit="submitLetter(event)">
+            <input
+              type="text"
+              id="letterEntered"
+              name="letterEntered"
+              size="15"
+              placeholder="Enter a Letter"
+            />
+            <input type="submit" value="Submit Letter" id="letterBtn" />
+          </form>
+        </div>
+        <div class="submitWord">
+          <form onsubmit="submitWord(event)">
+            <button
+              id="submitWordBtn"
+              type="submit"
+              value="Submit Word"
+              class="submitWordBtn"
+            >
+              Submit Word
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="screenRight">
+        <div class="hangManImg">
+          <div class="hangMan" id="hangMan"></div>
+        </div>
+      </div>
     </div>
     <script src="scripts.js"></script>
-</body>
-
+  </body>
 </html>

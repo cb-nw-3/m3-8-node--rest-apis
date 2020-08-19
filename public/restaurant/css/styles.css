@@ -1,0 +1,10 @@
+.firstCol {
+  display: flex;
+  flex-direction: column;
+}
+.firstRow {
+  display: flex;
+  justify-content: flex-start;
+}
+.customerInfo {
+}
